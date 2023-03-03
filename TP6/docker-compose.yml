@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    volumes:
+        - mymongovolume:/data/db
+    networks:
+      - bridge_tp4
+  app-flask:
+    image: marc/cloudcomputing/tp6
+    ports:
+      - "5000:5000"
+    links:
+      - mongodb
+    volumes:
+      - /home/crameh/Desktop/School/CloudComputing/TP4/text/text:/app/text
+    networks:
+      - bridge_tp4
+volumes:
+    mymongovolume:
+
+networks:
+  bridge_tp4:
+    name: bridge_tp4
+

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    networks:
+      - bridge_tp5
+  app-flask:
+    image: marc/cloudcomputing/tp5
+    ports:
+      - "5000:5000"
+    links:
+      - mongodb
+    networks:
+      - bridge_tp5
+
+networks:
+  bridge_tp5:
+    name: bridge_tp5
